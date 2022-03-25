@@ -22,20 +22,27 @@ public class ExtractorServiceImpl implements ExtractorService {
 
     public WordResult extractSentenceByWord(String word){
         List<String> sentences = fileService.getSentences();
-        List<SentenceResult> sentenceResults = sentences.stream()
-                .map(e -> new SentenceResult(e, countWords(e,word)))
+        List<SentenceResult> sentenceResults = getSentenceResults(word, sentences);
+        return new WordResult(word,sentenceResults);
+    }
+
+    private List<SentenceResult> getSentenceResults(String word, List<String> sentences) {
+        return sentences.stream()
+                .map(e -> new SentenceResult(e, countWords(e, word)))
                 .filter(e -> e.getCount() > 0)
                 .sorted(Comparator.comparing(SentenceResult::getCount).reversed().thenComparing(SentenceResult::getSentence))
                 .collect(Collectors.toList());
-        return new WordResult(word,sentenceResults);
     }
 
     private Integer countWords(String sentence, String word) {
         return Arrays.stream(sentence.split(" "))
-                .map(e -> e.replaceAll("[^a-zA-Z]", ""))
-                .filter(e -> !e.isBlank())
-                .filter(e -> e.equalsIgnoreCase(word))
+                .map(this::removeSpecialCharacters)
+                .filter(e -> !e.isBlank() && e.equalsIgnoreCase(word))
                 .collect(Collectors.toList())
                 .size();
+    }
+
+    private String removeSpecialCharacters(String e) {
+        return e.replaceAll("[^a-zA-Z]", "");
     }
 }

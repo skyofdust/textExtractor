@@ -29,10 +29,10 @@ public class FileServiceImpl implements FileService {
         this.filePath = filePath;
         this.resourceLoader = resourceLoader;
         this.resource = resourceLoader.getResource("classpath:"+filePath);
-        this.sentences = getFileWordMatrix(this.resource);
+        this.sentences = getListOfSentencesFromResource(this.resource);
     }
 
-    private List<String> getFileWordMatrix(org.springframework.core.io.Resource resource) throws IOException {
+    private List<String> getListOfSentencesFromResource(org.springframework.core.io.Resource resource) throws IOException {
         InputStream inputStream = resource.getInputStream();
         BufferedReader reader = new BufferedReader( new InputStreamReader(inputStream));
         return reader.lines()

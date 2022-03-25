@@ -21,12 +21,12 @@ public class ExtractorServiceTests extends TextExtractorApplicationTests{
     private ExtractorServiceImpl extractorService;
 
     @Test
-    public void extractSentanceByWord_allArgsOk_returnsSentenceResult(){
+    public void extractSentenceByWord_allArgsOk_returnsSentenceResult(){
         //prepare
         Mockito.when(fileService.getSentences()).thenReturn(generateSentences());
 
         //execute
-        WordResult wordResult = extractorService.extractSentanceByWord("eggplant");
+        WordResult wordResult = extractorService.extractSentenceByWord("eggplant");
 
         //assert
         Assertions.assertNotNull(wordResult.getSentences());
@@ -42,12 +42,12 @@ public class ExtractorServiceTests extends TextExtractorApplicationTests{
     }
 
     @Test
-    public void extractSentanceByWord_emptyWord_returnsSentenceResult(){
+    public void extractSentenceByWord_emptyWord_returnsSentenceResult(){
         //prepare
         Mockito.when(fileService.getSentences()).thenReturn(generateSentences());
 
         //execute
-        WordResult wordResult = extractorService.extractSentanceByWord("");
+        WordResult wordResult = extractorService.extractSentenceByWord("");
 
         //assert
         Assertions.assertNotNull(wordResult.getSentences());
@@ -58,12 +58,12 @@ public class ExtractorServiceTests extends TextExtractorApplicationTests{
     }
 
     @Test
-    public void extractSentanceByWord_nullWord_returnsSentenceResult(){
+    public void extractSentenceByWord_nullWord_returnsSentenceResult(){
         //prepare
         Mockito.when(fileService.getSentences()).thenReturn(generateSentences());
 
         //execute
-        WordResult wordResult = extractorService.extractSentanceByWord(null);
+        WordResult wordResult = extractorService.extractSentenceByWord(null);
 
         //assert
         Assertions.assertNotNull(wordResult.getSentences());

@@ -18,6 +18,6 @@ public class PublicApi {
 
     @RequestMapping(value = "/count", method = RequestMethod.GET)
     public WordResult getWordCounts(@RequestParam(name="word", required = false) String word){
-        return extractorService.extractSentanceByWord(word);
+        return extractorService.extractSentenceByWord(word);
     }
 }

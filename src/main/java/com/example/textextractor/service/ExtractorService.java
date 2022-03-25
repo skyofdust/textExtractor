@@ -4,6 +4,6 @@ import com.example.textextractor.model.WordResult;
 
 public interface ExtractorService {
 
-    WordResult extractSentanceByWord(String word);
+    WordResult extractSentenceByWord(String word);
 
 }

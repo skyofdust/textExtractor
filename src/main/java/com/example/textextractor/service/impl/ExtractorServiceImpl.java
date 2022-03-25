@@ -20,7 +20,7 @@ public class ExtractorServiceImpl implements ExtractorService {
         this.fileService = fileService;
     }
 
-    public WordResult extractSentanceByWord(String word){
+    public WordResult extractSentenceByWord(String word){
         List<String> sentences = fileService.getSentences();
         List<SentenceResult> sentenceResults = sentences.stream()
                 .map(e -> new SentenceResult(e, countWords(e,word)))
